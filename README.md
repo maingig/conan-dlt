@@ -1,2 +1,9 @@
 # conan-dlt
-Conan package for dlt-daemon
+
+Conan recipe for dlt-daemon
+
+To create a package and upload it to skywalker:
+
+```bash
+./conan-create.sh
+```
