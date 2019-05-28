@@ -25,6 +25,3 @@ conan create . ${CONANFILE_STREAM}
 fn_log "CONAN INFO: $CONAN_PACKAGE_NAME"
 conan info ${CONAN_PACKAGE_NAME}
 
-#fn_log "CONAN UPLOAD: $CONAN_PACKAGE_NAME"
-#conan upload -r skywalker ${CONAN_PACKAGE_NAME}
-
