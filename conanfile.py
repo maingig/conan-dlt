@@ -45,6 +45,10 @@ class DltConan(ConanFile):
         cmake.definitions["WITH_DLT_EXAMPLES"] = self.options.enable_examples
         cmake.definitions["BUILD_SHARED_LIBS"] = self.options.shared
         cmake.definitions["DLT_IPC"] = self.options.dlt_ipc
+        cmake.definitions["WITH_DLT_CXX11_EXT"] = "ON"
+        cmake.definitions["WITH_DLT_USE_IPv6"] = "OFF"
+        if self.settings.os == "QNX":
+        	cmake.definitions["__EXT_BSD"] = "ON"
         cmake.configure(source_folder=self.name)
         return cmake
 
