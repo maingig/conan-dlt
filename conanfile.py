@@ -1,7 +1,7 @@
 from conans import ConanFile, CMake, tools
 
 class DltConan(ConanFile):
-    name = "dlt-daemon"
+    name = "dlt"
     version = "2.18.2"
     license = "https://github.com/GENIVI/dlt-daemon/blob/master/LICENSE"
     author = "https://github.com/GENIVI/dlt-daemon/graphs/contributors"
