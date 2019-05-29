@@ -20,7 +20,7 @@ class DltConan(ConanFile):
         'shared': True,
         'fPIC': True,
         'enable_examples': False,
-        'dlt_ipc': "FIFO"
+        'dlt_ipc': "UNIX_SOCKET"
     }
     generators = "cmake"
     source_subfolder = "source_subfolder"
