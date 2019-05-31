@@ -2,7 +2,7 @@ from conans import ConanFile, CMake, tools
 
 class DltConan(ConanFile):
     name = "dlt"
-    version = "2.18.2"
+    version = "2.18.3"
     license = "https://github.com/GENIVI/dlt-daemon/blob/master/LICENSE"
     author = "https://github.com/GENIVI/dlt-daemon/graphs/contributors"
     url = "https://github.com/GENIVI/dlt-daemon.git"
@@ -38,7 +38,7 @@ class DltConan(ConanFile):
 
     def source(self):
         self.run("git clone %s %s" % (self.source_url, self.name))
-        self.run("cd %s && git checkout tags/v%s" % (self.name, self.version))
+        self.run("cd %s && git checkout" % (self.name))
 
     def configure_cmake(self):
         cmake = CMake(self)
