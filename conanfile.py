@@ -38,7 +38,7 @@ class DltConan(ConanFile):
 
     def source(self):
         self.run("git clone %s %s" % (self.source_url, self.name))
-        self.run("cd %s && git checkout" % (self.name))
+        self.run("cd %s && git checkout tags/v%s" % (self.name, self.version))
 
     def configure_cmake(self):
         cmake = CMake(self)
