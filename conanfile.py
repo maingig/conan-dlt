@@ -62,13 +62,11 @@ class DltConan(ConanFile):
     def package(self):
         cmake = self.configure_cmake()
         cmake.install()
-        # statics are installed in a static subdir so we move them to lib as well
-        if not self.options.shared:
-            self.copy(pattern="*.a", dst="lib", keep_path=False)
-            self.copy(pattern="*.lib", dst="lib", keep_path=False)
 
     def package_info(self):
         self.cpp_info.libs = ["dlt"]
+        if not self.options.shared:
+            self.cpp_info.libdirs = ["lib/static"]
         self.cpp_info.libs = tools.collect_libs(self)
         if self.settings.os == "Windows":
             self.cpp_info.libs.extend(['psapi', 'ws2_32'])
