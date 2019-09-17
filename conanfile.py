@@ -47,7 +47,7 @@ class DltConan(ConanFile):
         cmake.definitions["DLT_IPC"] = self.options.dlt_ipc
         cmake.definitions["WITH_DLT_CXX11_EXT"] = "ON"
         cmake.definitions["WITH_DLT_USE_IPv6"] = "OFF"
-        if self.options.fPIC:
+        if 'fPIC' in self.options and self.options.fPIC:
             cmake.definitions["CMAKE_C_FLAGS"] = "-fPIC"
             cmake.definitions["CMAKE_CXX_FLAGS"] = "-fPIC"
         if self.settings.os == "QNX":
