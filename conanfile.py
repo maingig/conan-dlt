@@ -47,8 +47,11 @@ class DltConan(ConanFile):
         cmake.definitions["DLT_IPC"] = self.options.dlt_ipc
         cmake.definitions["WITH_DLT_CXX11_EXT"] = "ON"
         cmake.definitions["WITH_DLT_USE_IPv6"] = "OFF"
+        if self.options.fPIC:
+            cmake.definitions["CMAKE_C_FLAGS"] = "-fPIC"
+            cmake.definitions["CMAKE_CXX_FLAGS"] = "-fPIC"
         if self.settings.os == "QNX":
-        	cmake.definitions["__EXT_BSD"] = "ON"
+            cmake.definitions["__EXT_BSD"] = "ON"
         cmake.configure(source_folder=self.name)
         return cmake
 
@@ -59,6 +62,10 @@ class DltConan(ConanFile):
     def package(self):
         cmake = self.configure_cmake()
         cmake.install()
+        # statics are installed in a static subdir so we move them to lib as well
+        if not self.options.shared:
+            self.copy(pattern="*.a", dst="lib", keep_path=False)
+            self.copy(pattern="*.lib", dst="lib", keep_path=False)
 
     def package_info(self):
         self.cpp_info.libs = ["dlt"]
@@ -69,3 +76,4 @@ class DltConan(ConanFile):
             self.cpp_info.libs.extend(['pthread'])
         elif self.settings.os == "QNX":
             self.cpp_info.libs.extend(['socket'])
+
