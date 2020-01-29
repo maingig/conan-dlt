@@ -62,6 +62,8 @@ class DltConan(ConanFile):
     def package(self):
         cmake = self.configure_cmake()
         cmake.install()
+        if not self.options.shared:
+            self.copy("*.a", dst="lib", src="src/lib")
 
     def package_info(self):
         self.cpp_info.libs = ["dlt"]
