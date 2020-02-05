@@ -19,7 +19,7 @@ class DltConan(ConanFile):
     default_options = {
         'shared': True,
         'fPIC': True,
-        'enable_examples': False,
+        'enable_examples': True,
         'dlt_ipc': "UNIX_SOCKET"
     }
     generators = "cmake"
