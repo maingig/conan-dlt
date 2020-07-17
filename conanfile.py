@@ -42,11 +42,16 @@ class DltConan(ConanFile):
 
     def configure_cmake(self):
         cmake = CMake(self)
-        cmake.definitions["WITH_DLT_EXAMPLES"] = self.options.enable_examples
         cmake.definitions["BUILD_SHARED_LIBS"] = self.options.shared
         cmake.definitions["DLT_IPC"] = self.options.dlt_ipc
         cmake.definitions["WITH_DLT_CXX11_EXT"] = "ON"
         cmake.definitions["WITH_DLT_USE_IPv6"] = "OFF"
+        if self.settings.os == "Android":
+            cmake.definitions["WITH_DLT_CONSOLE"] = "OFF"
+            cmake.definitions["WITH_DLT_EXAMPLES"] = "OFF"
+            cmake.definitions["WITH_DLT_TESTS"] = "OFF"
+        else:
+            cmake.definitions["WITH_DLT_EXAMPLES"] = self.options.enable_examples
         if 'fPIC' in self.options and self.options.fPIC:
             cmake.definitions["CMAKE_C_FLAGS"] = "-fPIC"
             cmake.definitions["CMAKE_CXX_FLAGS"] = "-fPIC"
