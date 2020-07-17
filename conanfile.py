@@ -3,9 +3,9 @@ from conans import ConanFile, CMake, tools
 class DltConan(ConanFile):
     name = "dlt"
     version = "2.18.5"
-    license = "https://github.com/GENIVI/dlt-daemon/blob/master/LICENSE"
-    author = "https://github.com/GENIVI/dlt-daemon/graphs/contributors"
-    url = "https://github.com/GENIVI/dlt-daemon.git"
+    license = "https://github.com/maingig/dlt-daemon/blob/master/LICENSE"
+    author = "https://github.com/maingig/dlt-daemon/graphs/contributors"
+    url = "https://github.com/maingig/dlt-daemon.git"
     description = "GENIVI Diagnostic Log and Trace"
     topics = ("dlt", "logging", "C++", "trace")
     settings = "os", "compiler", "build_type", "arch"
@@ -38,7 +38,7 @@ class DltConan(ConanFile):
 
     def source(self):
         self.run("git clone %s %s" % (self.source_url, self.name))
-        self.run("cd %s && git checkout tags/v%s" % (self.name, self.version))
+        self.run("cd %s && git checkout master" % (self.name))
 
     def configure_cmake(self):
         cmake = CMake(self)
